@@ -8,7 +8,7 @@ include_once 'settings.php';
 //error_reporting(0);
 
 if (!$_GET['tag']) {
-    echo 'Please provide a tag (?tag=rftees)';
+    echo 'Please provide a tag (?tag[]=rftees&tag[]=buymeabeer)';
     exit;
 }
 
@@ -84,17 +84,13 @@ if ($_GET['block']) {
 
 <?php
 
+    $query = implode('+AND+%23', $_GET['tag']);
 
-
-    // Create a client to work with the Twitter API
     $client = new Client('https://api.twitter.com/{version}', array(
         'version' => '1.1'
     ));
-
-    // Sign all requests with the OauthPlugin
     $client->addSubscriber(new Guzzle\Plugin\Oauth\OauthPlugin($twitter_oauth_settings));
-
-    $request = $client->get('search/tweets.json?q=' . $_GET['tag'] . '&include_entities=true&rpp=100');
+    $request = $client->get('search/tweets.json?q=%23' . $query . '&include_entities=true&rpp=100');
     $response = $request->send()->json();
 
     foreach ($response['statuses'] as $result) {
