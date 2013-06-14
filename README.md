@@ -14,6 +14,6 @@ eg: '#rftees #mysupplementbox @jmesmills You were entered into the competition.'
 The script will send a Tweet to the winner as well as displaying them on the screen.
 eg: 'The WINNER for competition #rftees #mysupplementbox is @jmesmills Congratulations!'
 
-![Example](https://github.com/Refresh-Teesside/Hashtag-Search/blob/master/assets/examples/hashtag_one.png?raw=true)
+![Example](https://raw.github.com/Refresh-Teesside/Hashtag-Search/master/assets/example/hashtag_one.png)
 
-![Example](https://github.com/Refresh-Teesside/Hashtag-Search/blob/master/assets/examples/hashtag_two.png?raw=true)
+![Example](https://raw.github.com/Refresh-Teesside/Hashtag-Search/master/assets/example/hashtag_two.png)
