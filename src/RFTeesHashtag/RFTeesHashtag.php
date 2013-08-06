@@ -15,9 +15,8 @@ class RFTeesHashtag
     public $totalCompEntries = 0;
     public $winner = array();
 
-    public function __construct()
+    public function __construct($twitter_oauth_config)
     {
-        $twitter_oauth_config = file_get_contents(__DIR__ . '../../../config/settings.json');
         $this->twitter_oauth_config = json_decode($twitter_oauth_config, true);
     }
 

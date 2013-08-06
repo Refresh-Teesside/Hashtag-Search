@@ -4,14 +4,14 @@
 
 require_once 'vendor/autoload.php';
 
-$RFTeesHashtag = new \RFTeesHashtag\RFTeesHashtag();
+$RFTeesHashtag = new \RFTeesHashtag\RFTeesHashtag(file_get_contents(__DIR__ . '/config/settings.json'));
 $RFTeesHashtag->check();
 $RFTeesHashtag->setTags($_GET['tag']);
 $RFTeesHashtag->setBlockedUsers($_GET['block']);
 $RFTeesHashtag->doSearch();
 $RFTeesHashtag->pickWinner();
 //$RFTeesHashtag->sendTweet();
-//$RFTeesHashtag->tweetWinner();
+$RFTeesHashtag->tweetWinner();
 
 function formatDate($date)
 {
