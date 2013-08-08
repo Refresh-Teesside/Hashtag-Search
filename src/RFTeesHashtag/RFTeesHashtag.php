@@ -20,14 +20,6 @@ class RFTeesHashtag
         $this->twitter_oauth_config = json_decode($twitter_oauth_config, true);
     }
 
-    public function check()
-    {
-        if (!$_GET['tag']) {
-            echo 'Please provide a tag (?tag[]=rftees&tag[]=buymeabeer)';
-            exit;
-        }
-    }
-
     public function setTags($tags)
     {
         $this->tags = $tags;
@@ -87,10 +79,12 @@ class RFTeesHashtag
             $client = new Guzzle\Http\Client('https://api.twitter.com/{version}', array('version' => '1.1'));
             $client->addSubscriber(new Guzzle\Plugin\Oauth\OauthPlugin($this->twitter_oauth_config));
             $request = $client->post('statuses/update.json', null, array(
-                    'status' => '#' . implode(' #', $this->tags) . ' @' . $entry['user']['screen_name'] . ' You were entered into the competition.',
+                    'status' => '@' . $entry['user']['screen_name'] . ' You were entered into the competition.' . ' #' . implode(' #', $this->tags),
                     'in_reply_to_status_id' => $entry['id_str']
                 ));
             $request->send()->json();
+
+            exit;
 
         }
     }

@@ -4,8 +4,13 @@
 
 require_once 'vendor/autoload.php';
 
+if (!$_GET['tag']) {
+    include 'start.php';
+    exit;
+}
+
+
 $RFTeesHashtag = new \RFTeesHashtag\RFTeesHashtag(file_get_contents(__DIR__ . '/config/settings.json'));
-$RFTeesHashtag->check();
 $RFTeesHashtag->setTags($_GET['tag']);
 $RFTeesHashtag->setBlockedUsers($_GET['block']);
 $RFTeesHashtag->doSearch();
