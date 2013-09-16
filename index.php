@@ -9,14 +9,20 @@ if (!$_GET['tag']) {
     exit;
 }
 
-
 $RFTeesHashtag = new \RFTeesHashtag\RFTeesHashtag(file_get_contents(__DIR__ . '/config/settings.json'));
 $RFTeesHashtag->setTags($_GET['tag']);
-$RFTeesHashtag->setBlockedUsers($_GET['block']);
+
+if ($_GET['block']) {
+    $RFTeesHashtag->setBlockedUsers($_GET['block']);
+}
+
+$RFTeesHashtag->setBlockedUsers(array('jamesmills', 'refreshteesside'));
+
 $RFTeesHashtag->doSearch();
 $RFTeesHashtag->pickWinner();
-//$RFTeesHashtag->sendTweet();
+$RFTeesHashtag->sendTweet();
 $RFTeesHashtag->tweetWinner();
+
 
 function formatDate($date)
 {
@@ -73,7 +79,13 @@ function formatDate($date)
         </div>
     </div>
 
-    <div class="page-header"><h1><?php echo $RFTeesHashtag->getTotalCompEntries();?> valid entries!</h1></div>
+    <div class="page-header">
+        <h1>
+            <?php echo $RFTeesHashtag->getAllEntriesCount();?> entries in total
+            <span style="color: #468847"><?php echo $RFTeesHashtag->getValidEntriesCount();?> valid</span>
+            <span style="color: #b94a48"><?php echo $RFTeesHashtag->getNotValidEntriesCount();?> not valid</span>
+        </h1>
+    </div>
 
     <?php
 

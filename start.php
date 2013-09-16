@@ -15,19 +15,26 @@
 <div class="container">
 
     <div class="page-header">
-        <h1>Hashtag Competition <small>August 2013</small></h1>
+        <h1>Hashtag Competition <small><?php echo date('F Y'); ?></small></h1>
     </div>
 
     <div class="well">
-        <h2>iPad</h2>
-        <a class="btn btn-primary btn-large" href="http://hashtag.refreshteesside.org/?tag[]=rftees&tag[]=searchcamp">#rftees #searchcamp</a>
+        <h2>Kindle (Thank @audacioushq)</h2>
+        <a class="btn btn-primary btn-large" href="http://hashtag.refreshteesside.org/?tag[]=rftees&tag[]=audacious">#rftees #audacious</a>
+    </div>
+
+    <hr>
+
+    <div class="well">
+        <h2>Free drink (Thank @jamesmills)</h2>
+        <a class="btn btn-primary btn-large" href="http://hashtag.refreshteesside.org/?tag[]=rftees&tag[]=beer">#rftees #beer</a>
     </div>
 
     <hr>
 
     <div class="well">
         <h2>t-shirt</h2>
-        <a class="btn btn-primary btn-large" href="http://hashtag.refreshteesside.org/?tag[]=rftees&tag[]=august">#rftees #august</a>
+        <a class="btn btn-primary btn-large" href="http://hashtag.refreshteesside.org/?tag[]=rftees&tag[]=<?php echo strtolower(date('F')); ?>">#rftees #<?php echo strtolower(date('F')); ?></a>
     </div>
 
 </div>

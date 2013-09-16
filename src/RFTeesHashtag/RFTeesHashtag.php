@@ -12,7 +12,6 @@ class RFTeesHashtag
     public $allEntries = array();
     public $validEntries = array();
     public $notValidEntries = array();
-    public $totalCompEntries = 0;
     public $winner = array();
 
     public function __construct($twitter_oauth_config)
@@ -25,10 +24,10 @@ class RFTeesHashtag
         $this->tags = $tags;
     }
 
-    public function setBlockedUsers($usernames)
+    public function setBlockedUsers(Array $usernames)
     {
         if (!empty($usernames)) {
-            $this->blocked = $usernames;
+            $this->blocked = array_merge($this->blocked, $usernames);
         }
     }
 
@@ -41,9 +40,19 @@ class RFTeesHashtag
         $this->setResults($request->send()->json());
     }
 
-    public function getTotalCompEntries()
+    public function getValidEntriesCount()
     {
-        return $this->totalCompEntries;
+        return count($this->validEntries);
+    }
+
+    public function getNotValidEntriesCount()
+    {
+        return count($this->notValidEntries);
+    }
+
+    public function getAllEntriesCount()
+    {
+        return count($this->allEntries);
     }
 
     private function setResults($response)
@@ -57,10 +66,9 @@ class RFTeesHashtag
             ) {
                 $result['valid'] = 'yes';
                 $this->validEntries[] = $result;
-                $this->totalCompEntries++;
             } else {
-                $this->notValidEntries[] = $result;
                 $result['valid'] = 'no';
+                $this->notValidEntries[] = $result;
             }
             $this->allEntries[] = $result;
         }
@@ -79,13 +87,10 @@ class RFTeesHashtag
             $client = new Guzzle\Http\Client('https://api.twitter.com/{version}', array('version' => '1.1'));
             $client->addSubscriber(new Guzzle\Plugin\Oauth\OauthPlugin($this->twitter_oauth_config));
             $request = $client->post('statuses/update.json', null, array(
-                    'status' => '@' . $entry['user']['screen_name'] . ' You were entered into the competition.' . ' #' . implode(' #', $this->tags),
+                    'status' => ' @' . $entry['user']['screen_name'] . ' You were entered into the competition.' . ' #' . implode(' #', $this->tags),
                     'in_reply_to_status_id' => $entry['id_str']
                 ));
             $request->send()->json();
-
-            exit;
-
         }
     }
 
