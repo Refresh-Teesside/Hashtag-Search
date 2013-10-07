@@ -20,7 +20,7 @@ $RFTeesHashtag->setBlockedUsers(array('jamesmills', 'refreshteesside'));
 
 $RFTeesHashtag->doSearch();
 $RFTeesHashtag->pickWinner();
-$RFTeesHashtag->sendTweet();
+//$RFTeesHashtag->sendTweet();
 $RFTeesHashtag->tweetWinner();
 
 
