@@ -1,7 +1,5 @@
 <?php
 
-//error_reporting(0);
-
 require_once 'vendor/autoload.php';
 
 if (!$_GET['tag']) {
@@ -10,17 +8,18 @@ if (!$_GET['tag']) {
 }
 
 $RFTeesHashtag = new \RFTeesHashtag\RFTeesHashtag(file_get_contents(__DIR__ . '/config/settings.json'));
+
 $RFTeesHashtag->setTags($_GET['tag']);
 
 if ($_GET['block']) {
     $RFTeesHashtag->setBlockedUsers($_GET['block']);
 }
 
-$RFTeesHashtag->setBlockedUsers(array('jamesmills', 'refreshteesside'));
+$RFTeesHashtag->setBlockedUsers(array('refreshteesside'));
 
 $RFTeesHashtag->doSearch();
 $RFTeesHashtag->pickWinner();
-//$RFTeesHashtag->sendTweet();
+$RFTeesHashtag->sendTweet();
 $RFTeesHashtag->tweetWinner();
 
 
