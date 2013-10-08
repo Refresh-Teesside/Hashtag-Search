@@ -15,7 +15,7 @@ if ($_GET['block']) {
     $RFTeesHashtag->setBlockedUsers($_GET['block']);
 }
 
-$RFTeesHashtag->setBlockedUsers(array('refreshteesside'));
+$RFTeesHashtag->setBlockedUsers(array('jamesmills', 'refreshteesside', 'benjam_es', 'xocs'));
 
 $RFTeesHashtag->doSearch();
 $RFTeesHashtag->pickWinner();
