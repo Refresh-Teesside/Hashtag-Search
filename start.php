@@ -18,11 +18,6 @@
         <h1>Hashtag Competition <small><?php echo date('F Y'); ?></small></h1>
     </div>
 
-    <div class="well">
-        <h2>Kindle (Thank @audacioushq)</h2>
-        <a class="btn btn-primary btn-large" href="http://hashtag.refreshteesside.org/?tag[]=rftees&tag[]=audacious">#rftees #audacious</a>
-    </div>
-
     <hr>
 
     <div class="well">
